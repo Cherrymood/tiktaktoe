@@ -1,21 +1,56 @@
 ﻿
 class Board
 {
-    private string net = "123456789";
+    private char[] net = {'_', '_', '_', '_', '_', '_', '_', '_', '_'};
+
+    public char this[int index]
+    {
+        get => net[index];
+        set => net[index] = value;
+    } 
     public void Print()
     {
-        Console.WriteLine(net.Substring(0,3));
-        Console.WriteLine(net.Substring(3,3));
-        Console.WriteLine(net.Substring(6,3));
+    
+        string boardnet = "";
+        boardnet += net[0];
+        boardnet += net[1];
+        boardnet += net[2];
+        boardnet += '\n';
+        boardnet += net[3];
+        boardnet += net[4];
+        boardnet += net[5];
+        boardnet += '\n';
+        boardnet += net[6];
+        boardnet += net[7];
+        boardnet += net[8];
+
+        Console.WriteLine(boardnet);
     }
 }
 
 class Player
 {
+    private char symbol_;
+
+    public Player(char symbol)
+    {
+        symbol_ = symbol;
+    }
+
     public void MakesMove(ref Board board) 
     {
-        // TO DO
-        return;
+        for (int i= 0; i < 9; i++)
+        {
+            if (board[i] != 'X' && board[i] != 'O')
+            {
+                board[i] = symbol_;
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
     }
 }
 
@@ -41,8 +76,8 @@ class Application
     public Application()
     {
         board = new Board();
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player('X');
+        player2 = new Player('O');
         state = State.Preparation;
         winner = " ";
 
