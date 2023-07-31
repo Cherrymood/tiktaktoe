@@ -1,0 +1,1 @@
+enum State {Preparation, Move_p1, Move_p2, Result};
